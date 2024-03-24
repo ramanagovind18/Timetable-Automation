@@ -1,16 +1,15 @@
-// Instructors.jsx
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/instructors.css";
 import Sidebar from "./Sidebar";
 import EditInstructorModal from "../editmodals/EditInstructorModals.jsx";
-import AddNewInstructor from "../addnew/AddNewInstructor.jsx"; // Import the AddNewInstructor component
+import AddNewInstructor from "../addnew/AddNewInstructor.jsx"; 
 
 const Instructors = () => {
   const [instructors, setInstructors] = useState([]);
   const [showEditModal, setShowEditModal] = useState(false);
   const [selectedInstructor, setSelectedInstructor] = useState(null);
-  const [showAddInstructor, setShowAddInstructor] = useState(false); // State for showing the AddNewInstructor component
+  const [showAddInstructor, setShowAddInstructor] = useState(false); 
 
   useEffect(() => {
     fetchInstructors();

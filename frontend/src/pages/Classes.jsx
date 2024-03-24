@@ -1,13 +1,53 @@
-import React from "react";
-import "../css/classes.css"; // Assuming you have a CSS file for styling
+import React, { useState, useEffect } from "react";
+import axios from "axios";
+import "../css/classes.css"; 
 import Sidebar from "./Sidebar";
+import EditClassModal from "../editmodals/EditClassModals";
+import AddNewClass from "../addnew/AddNewClass";
 
 const Classes = () => {
-  const classes = [
-    { id: 1, name: "Class A", capacity: 30 },
-    { id: 2, name: "Class B", capacity: 25 },
-    { id: 3, name: "Class C", capacity: 20 },
-  ];
+  const [classes, setClasses] = useState([]);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedClass, setSelectedClass] = useState(null);
+  const [showAddClass, setShowAddClass] = useState(false);
+
+  useEffect(() => {
+    fetchClasses();
+  }, []);
+
+  const fetchClasses = () => {
+    axios.get("http://localhost:8000/api/classes/")
+      .then(response => {
+        setClasses(response.data);
+      })
+      .catch(error => {
+        console.error("Error fetching classes:", error);
+      });
+  };
+
+  const handleEditClick = (classItem) => {
+    setSelectedClass(classItem);
+    setShowEditModal(true);
+  };
+
+  const handleDeleteClick = (classId) => {
+    axios.delete(`http://localhost:8000/api/classes/${classId}`)
+      .then(response => {
+        console.log("Class deleted successfully");
+        fetchClasses(); // Fetch updated classes data
+      })
+      .catch(error => {
+        console.error("Error deleting class:", error);
+      });
+  };
+
+  const handleCloseModal = (refreshData) => {
+    setShowEditModal(false);
+    setSelectedClass(null);
+    if (refreshData) {
+      fetchClasses(); // Fetch updated classes data
+    }
+  };
 
   return (
     <div className="classes-page">
@@ -15,7 +55,7 @@ const Classes = () => {
       <div className="main-content">
         <div className="head">
           <h1>Classes</h1>
-          <button className="add-class-btn">Add Class</button>
+          <button onClick={() => setShowAddClass(true)}>Add Class</button>
         </div>
         <table className="classes-table">
           <thead>
@@ -31,14 +71,28 @@ const Classes = () => {
                 <td>{classItem.name}</td>
                 <td>{classItem.capacity}</td>
                 <td>
-                  <button>Edit</button>
-                  <button>Delete</button>
+                  <button onClick={() => handleEditClick(classItem)}>Edit</button>
+                  <button onClick={() => handleDeleteClick(classItem.id)}>Delete</button>
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
       </div>
+      {showEditModal && (
+        <EditClassModal
+          isOpen={showEditModal}
+          onClose={handleCloseModal}
+          classItem={selectedClass}
+        />
+      )}
+      {showAddClass && (
+        <AddNewClass
+          isOpen={showAddClass}
+          onClose={() => setShowAddClass(false)}
+          onAddSuccess={fetchClasses}
+        />
+      )}
     </div>
   );
 };

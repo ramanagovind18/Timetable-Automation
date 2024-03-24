@@ -2,25 +2,55 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import "../css/courses.css";
 import Sidebar from "./Sidebar";
+import EditCourseModal from "../editmodals/EditCourseModals.jsx";
+import AddNewCourse from "../addnew/AddNewCourse.jsx";
 
 const Courses = () => {
   const [courses, setCourses] = useState([]);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [selectedCourse, setSelectedCourse] = useState(null);
+  const [showAddCourse, setShowAddCourse] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchCourses = async () => {
-      try {
-        const response = await axios.get("http://localhost:8000/api/courses/");
-        setCourses(response.data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error fetching courses:", error);
-        setLoading(false);
-      }
-    };
-
     fetchCourses();
   }, []);
+
+  const fetchCourses = () => {
+    axios.get("http://localhost:8000/api/courses/")
+      .then(response => {
+        setCourses(response.data);
+        setLoading(false);
+      })
+      .catch(error => {
+        console.error("Error fetching courses:", error);
+        setLoading(false);
+      });
+  };
+
+  const handleEditClick = (course) => {
+    setSelectedCourse(course);
+    setShowEditModal(true);
+  };
+
+  const handleDeleteClick = (courseId) => {
+    axios.delete(`http://localhost:8000/api/courses/${courseId}`)
+      .then(response => {
+        console.log("Course deleted successfully");
+        fetchCourses();
+      })
+      .catch(error => {
+        console.error("Error deleting course:", error);
+      });
+  };
+
+  const handleCloseModal = (refreshData) => {
+    setShowEditModal(false);
+    setSelectedCourse(null);
+    if (refreshData) {
+      fetchCourses();
+    }
+  };
 
   return (
     <div className="courses-page">
@@ -28,13 +58,8 @@ const Courses = () => {
       <div className="main-content">
         <div className="head">
           <h1>Courses</h1>
+          <button onClick={() => setShowAddCourse(true)}>Add Course</button>
         </div>
-        <div className="search">           
-          <div className="search-box">
-            <input type="text" placeholder="Search..." />
-          </div>
-          <button className="add-course-btn">Add Course</button>
-        </div> 
         {loading ? (
           <p>Loading...</p>
         ) : (
@@ -43,19 +68,17 @@ const Courses = () => {
               <tr>
                 <th>Course Number</th>
                 <th>Course Name</th>
-
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {courses.map((course) => (
-                <tr key={course.course_number}>
+              {courses.map(course => (
+                <tr key={course.id}>
                   <td>{course.course_number}</td>
                   <td>{course.course_name}</td>
-
                   <td>
-                    <button>Edit</button>
-                    <button>Delete</button>
+                    <button onClick={() => handleEditClick(course)}>Edit</button>
+                    <button onClick={() => handleDeleteClick(course.id)}>Delete</button>
                   </td>
                 </tr>
               ))}
@@ -63,6 +86,20 @@ const Courses = () => {
           </table>
         )}
       </div>
+      {showEditModal && (
+        <EditCourseModal
+          isOpen={showEditModal}
+          onClose={handleCloseModal}
+          course={selectedCourse}
+        />
+      )}
+      {showAddCourse && (
+        <AddNewCourse
+          isOpen={showAddCourse}
+          onClose={() => setShowAddCourse(false)}
+          onAddSuccess={fetchCourses}
+        />
+      )}
     </div>
   );
 };

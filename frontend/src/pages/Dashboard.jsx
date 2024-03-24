@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Sidebar from "./Sidebar.jsx";
-import "../css/dashboard.css"; // Assuming you have a CSS file for styling
+import "../css/dashboard.css"; 
 
 const Dashboard = () => {
   const [instructorsCount, setInstructorsCount] = useState(0);
@@ -59,7 +59,7 @@ const Dashboard = () => {
   <button>Generate Timetables</button>  
 </div>
 
-{/* Table */}
+
 <table className="timetable-table">
   <thead>
     <tr>

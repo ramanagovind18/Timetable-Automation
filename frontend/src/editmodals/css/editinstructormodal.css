@@ -1,5 +1,3 @@
-/* EditInstructorModal.css */
-
 .modal {
   position: fixed;
   top: 0;
@@ -17,10 +15,9 @@
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  width: 500px; /* Adjust width as needed */
+  width: 500px; 
 }
 
-/* Add transition for modal enter and exit */
 .modal-enter {
   opacity: 0;
 }
@@ -45,7 +42,6 @@
   margin-top: 10px;
 }
 
-/* Ensure that the modal styles do not affect the main content */
 .instructors-page {
   position: relative;
 }
