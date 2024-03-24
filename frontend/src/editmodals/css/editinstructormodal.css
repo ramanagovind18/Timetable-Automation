@@ -1,0 +1,85 @@
+/* EditInstructorModal.css */
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: block;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  background-color: rgb(201, 74, 74);
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  width: 500px; /* Adjust width as needed */
+}
+
+/* Add transition for modal enter and exit */
+.modal-enter {
+  opacity: 0;
+}
+
+.modal-enter-active {
+  opacity: 1;
+  transition: opacity 2 ease-in-out;
+}
+
+.modal-exit {
+  opacity: 1;
+}
+
+.modal-exit-active {
+  opacity: 0;
+  transition: opacity 2 ease-in-out;
+}
+
+.buttons {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+/* Ensure that the modal styles do not affect the main content */
+.instructors-page {
+  position: relative;
+}
+
+.main-content {
+  flex: 1;
+  padding: 20px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  border-radius: 10px;
+  padding: 0px 20px;
+}
+
+.head h1 {
+  font-size: 28px;
+  color: #ffffff;
+}
+
+.head button {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #143455;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+.head button:hover {
+  background-color: #0056b3;
+}

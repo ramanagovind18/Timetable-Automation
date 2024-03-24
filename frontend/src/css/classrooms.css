@@ -1,0 +1,78 @@
+.classrooms-page {
+    display: flex;
+    background: rgb(232,41,41);
+    background: linear-gradient(90deg, rgba(232,41,41,1) 0%, rgba(121,56,9,1) 55%, rgb(23, 70, 80) 100%);
+    padding: 0;
+    margin: 0;
+    font-family: "Courier New", Courier, monospace;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 0px 20px;
+  }
+  
+  .head h1 {
+    font-size: 28px;
+    color: #333;
+  }
+  
+  .head button.add-classroom-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #007bff;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+  }
+  
+  .head button.add-classroom-btn:hover {
+    background-color: #0056b3;
+  }
+  
+  .classrooms-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .classrooms-table th,
+  .classrooms-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #ff6060;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .classrooms-table td {
+    background-color: #f8c5c5;
+    color: #333;
+  }
+  
+  .classrooms-table td button {
+    background-color: #2c6199;
+    padding: 10px 20px;
+    border-radius: 10px;
+    margin: 1px 2px;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+  }
+  
+  .classrooms-table td button:hover {
+    background-color: #36516b;
+  }
+  

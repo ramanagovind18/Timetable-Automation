@@ -1,0 +1,40 @@
+.page {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background: rgb(232,41,41);
+  background: linear-gradient(90deg, rgba(232,41,41,1) 0%, rgba(121,56,9,1) 55%, rgb(23, 70, 80) 100%);
+  padding: 0;
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+
+}
+
+.page h1 {
+  font-size: 32px;
+  margin-bottom: 20px;
+  color: #ffffff; /* Dark color for headings */
+}
+
+.page p {
+  font-size: 18px;
+  margin-bottom: 40px;
+  color: #ffffff; /* Medium color for text */
+}
+
+.page .btn {
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #0d3f74; /* Blue color for button */
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+.page .btn:hover {
+  background-color: #0056b3; /* Darker blue color on hover */
+}

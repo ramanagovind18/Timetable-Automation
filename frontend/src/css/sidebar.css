@@ -1,0 +1,39 @@
+.sidebar {
+    width: 250px;
+    background-color: rgb(232,41,41); /* Dark background color */
+    border-radius: 10px;
+    margin: 10px 5px;
+    border: 2px solid rgb(221, 83, 83);
+  }
+  
+  .sidebar h6 {
+    color: #ffffff; /* White color for headings */
+    font-size: 18px;
+    font-weight: bolder;
+    margin-bottom: 20px;
+    padding: 10px 5px;
+    border-radius: 10px;
+  }
+  
+  .sidebar h6:hover{
+    background-color: #8d1e1e;
+  }
+  
+  .sidebar ul {
+    list-style-type: none;
+  }
+  
+  .sidebar ul li {
+    margin-bottom: 10px;
+    font-size: larger;
+    cursor: pointer;
+    color: #000000; /* Light color for menu items */
+    font-weight: bolder;
+    padding: 20px 10px 20px 10px;
+    border-radius: 5px;
+  }
+  
+  .sidebar ul li:hover {
+    color: #ffffff; /* White color on hover */
+  }
+  

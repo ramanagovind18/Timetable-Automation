@@ -1,21 +1,21 @@
 import React, { useState } from "react";
 import axios from "axios";
 
-const RoomForm = () => {
+const ClassroomForm = () => {
   const [roomNumber, setRoomNumber] = useState("");
   const [seatingCapacity, setSeatingCapacity] = useState("");
 
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
-      const response = await axios.post("http://localhost:8000/api/rooms/", {
+      const response = await axios.post("http://localhost:8000/api/classrooms/", {
         room_number: roomNumber,
         seating_capacity: seatingCapacity,
       });
-      console.log("Room created successfully:", response.data);
+      console.log("Classroom created successfully:", response.data);
       // Optionally, redirect or show a success message after successful form submission
     } catch (error) {
-      console.error("Error creating room:", error);
+      console.error("Error creating classroom:", error);
     }
   };
 
@@ -42,4 +42,4 @@ const RoomForm = () => {
   );
 };
 
-export default RoomForm;
+export default ClassroomForm;

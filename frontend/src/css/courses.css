@@ -1,0 +1,106 @@
+/* courses.css */
+
+.courses-page {
+    display: flex;
+    background: rgb(232,41,41);
+    background: linear-gradient(90deg, rgba(232,41,41,1) 0%, rgba(121,56,9,1) 55%, rgb(23, 70, 80) 100%);
+    padding: 0;
+    margin: 0;
+    font-family: "Courier New", Courier, monospace;
+  }
+  
+  .main-content {
+    flex: 1;
+    padding: 20px;
+  }
+  
+  .head {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 0px 20px;
+  }
+
+  .search{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    border-radius: 10px;
+    padding: 0px 20px;
+  }
+  
+.search .search-box {
+    margin-right: 20px;
+  } 
+  
+.search .search-box input {
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+  }
+ 
+  .search button.course-search-btn {
+    padding: 8px 10px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #ffffff;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+  }
+  .search button.add-course-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #1e4b7a;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+  }
+  
+  .search button.add-course-btn:hover {
+    background-color: #0056b3;
+  }
+  .search button.course-search-btn:hover{
+    background-color: #3e6c9e;
+  }
+  
+  .courses-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+  }
+  
+  .courses-table th,
+  .courses-table td {
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #ff6060;
+    color: #333;
+    font-weight: bold;
+  }
+  
+  .courses-table td {
+    background-color: #f8c5c5;
+    color: #333;
+  }
+  
+  .courses-table td button {
+    background-color: #2c6199;
+    padding: 10px 20px;
+    border-radius: 10px;
+    color: #ffffff;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.5s ease;
+    margin : 1px 2px;
+  }
+  
+  .courses-table td button:hover {
+    background-color: #36516b;
+  }
+  
