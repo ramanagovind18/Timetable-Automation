@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { v4 as uuidv4 } from 'uuid';
 import "../css/courses.css";
 import Sidebar from "./Sidebar";
 import EditCourseModal from "../editmodals/EditCourseModals.jsx";
@@ -17,12 +18,13 @@ const Courses = () => {
   }, []);
 
   const fetchCourses = () => {
-    axios.get("http://localhost:8000/api/courses/")
-      .then(response => {
+    axios
+      .get("http://localhost:8000/api/courses/")
+      .then((response) => {
         setCourses(response.data);
         setLoading(false);
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error fetching courses:", error);
         setLoading(false);
       });
@@ -34,12 +36,13 @@ const Courses = () => {
   };
 
   const handleDeleteClick = (courseId) => {
-    axios.delete(`http://localhost:8000/api/courses/${courseId}`)
-      .then(response => {
+    axios
+      .delete(`http://localhost:8000/api/courses/${courseId}`)
+      .then((response) => {
         console.log("Course deleted successfully");
         fetchCourses();
       })
-      .catch(error => {
+      .catch((error) => {
         console.error("Error deleting course:", error);
       });
   };
@@ -66,19 +69,23 @@ const Courses = () => {
           <table className="courses-table">
             <thead>
               <tr>
-                <th>Course Number</th>
+                <th>Course Code</th>
                 <th>Course Name</th>
                 <th>Actions</th>
               </tr>
             </thead>
             <tbody>
-              {courses.map(course => (
-                <tr key={course.id}>
-                  <td>{course.course_number}</td>
+              {courses.map((course) => (
+                <tr key={uuidv4()}>
+                  <td>{course.course_code}</td>
                   <td>{course.course_name}</td>
                   <td>
-                    <button onClick={() => handleEditClick(course)}>Edit</button>
-                    <button onClick={() => handleDeleteClick(course.id)}>Delete</button>
+                    <button onClick={() => handleEditClick(course)}>
+                      Edit
+                    </button>
+                    <button onClick={() => handleDeleteClick(course.id)}>
+                      Delete
+                    </button>
                   </td>
                 </tr>
               ))}

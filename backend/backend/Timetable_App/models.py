@@ -36,7 +36,7 @@ class Instructor(models.Model):
     
 
 class Course(models.Model):
-    course_number = models.CharField(max_length=10, primary_key=True)
+    course_code = models.CharField(max_length=10, primary_key=True)
     course_name = models.CharField(max_length=100)
 
     # Add more fields as needed

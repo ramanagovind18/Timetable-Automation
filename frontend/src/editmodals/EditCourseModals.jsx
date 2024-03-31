@@ -5,15 +5,16 @@ import "./css/editcoursemodal.css";
 
 const EditCourseModal = ({ isOpen, onClose, course }) => {
   const [courseName, setCourseName] = useState(course.course_name);
+  const [courseCode, setCourseCode] = useState(course.course_code);
 
-
-  const handleSubmit = async () => {
+  const handleSubmit = async (e) => {
+    e.preventDefault();
     try {
-      await axios.put(`http://localhost:8000/api/courses/${course.course_number}/`, {
+      await axios.put(`http://localhost:8000/api/courses/${course.id}/`, {
         course_name: courseName,
-
+        course_code: courseCode,
       });
-      onClose(true); // Close the modal and refresh the data
+      onClose(true);
     } catch (error) {
       console.error("Error updating course:", error);
     }
@@ -25,6 +26,10 @@ const EditCourseModal = ({ isOpen, onClose, course }) => {
         <div className="modal-content" onClick={(e) => e.stopPropagation()}>
           <h2>Edit Course</h2>
           <form onSubmit={handleSubmit}>
+            <label>
+              Course Code:
+              <input type="text" value={courseCode} onChange={(e) => setCourseCode(e.target.value)} />
+            </label>
             <label>
               Course Name:
               <input type="text" value={courseName} onChange={(e) => setCourseName(e.target.value)} />

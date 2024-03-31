@@ -17,7 +17,7 @@ const EditInstructorModal = ({ isOpen, onClose, instructor }) => {
         phone,
         department
       });
-      onClose(true); // Close the modal and refresh the data
+      onClose(true); 
     } catch (error) {
       console.error("Error updating instructor:", error);
     }

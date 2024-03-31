@@ -1,42 +1,51 @@
 import React, { useState } from "react";
-import { CSSTransition } from "react-transition-group";
 import axios from "axios";
 
 const AddNewCourse = ({ isOpen, onClose, onAddSuccess }) => {
-  const [courseName, setCourseName] = useState("");
+  const [formData, setFormData] = useState({
+    courseName: "",
+    courseCode: ""
+  });
 
-  const handleSubmit = async (e) => {
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prevState => ({
+      ...prevState,
+      [name]: value
+    }));
+  };
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    try {
-      await axios.post("http://localhost:8000/api/courses/", {
-        course_name: courseName,
+    axios.post("http://localhost:8000/api/courses/", formData)
+      .then(response => {
+        console.log("Course added successfully");
+        onAddSuccess();
+        onClose(); 
+      })
+      .catch(error => {
+        console.error("Error adding course:", error);
       });
-      onAddSuccess(); 
-      onClose(false); 
-    } catch (error) {
-      console.error("Error adding new course:", error);
-    }
   };
 
   return (
-    <CSSTransition in={isOpen} timeout={300} classNames="modal" unmountOnExit>
-      <div className="modal" onClick={() => onClose(false)}>
-        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+    isOpen && (
+      <div className="modal">
+        <div className="modal-content">
           <h2>Add New Course</h2>
           <form onSubmit={handleSubmit}>
-            <label>
-              Course Name:
-              <input type="text" value={courseName} onChange={(e) => setCourseName(e.target.value)} />
-            </label>
-
+            <label>Course Code:</label>
+            <input type="text" name="courseCode" value={formData.courseCode} onChange={handleChange} required />
+            <label>Course Name:</label>
+            <input type="text" name="courseName" value={formData.courseName} onChange={handleChange} />
             <div className="buttons">
               <button type="submit">Add</button>
-              <button type="button" onClick={() => onClose(false)}>Cancel</button>
+              <button onClick={onClose}>Cancel</button>
             </div>
           </form>
         </div>
       </div>
-    </CSSTransition>
+    )
   );
 };
 

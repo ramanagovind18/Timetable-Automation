@@ -22,8 +22,8 @@ const AddNewInstructor = ({ isOpen, onClose, onAddSuccess }) => {
     axios.post("http://localhost:8000/api/instructors/", formData)
       .then(response => {
         console.log("Instructor added successfully");
-        onAddSuccess(); // Fetch updated instructors data
-        onClose(); // Close the modal
+        onAddSuccess();
+        onClose(); 
       })
       .catch(error => {
         console.error("Error adding instructor:", error);

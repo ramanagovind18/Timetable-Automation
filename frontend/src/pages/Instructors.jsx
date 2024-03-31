@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
+import { v4 as uuidv4 } from 'uuid';
 import "../css/instructors.css";
 import Sidebar from "./Sidebar";
 import EditInstructorModal from "../editmodals/EditInstructorModals.jsx";
@@ -34,7 +35,7 @@ const Instructors = () => {
     axios.delete(`http://localhost:8000/api/instructors/${instructorId}`)
       .then(response => {
         console.log("Instructor deleted successfully");
-        fetchInstructors(); // Fetch updated instructors data
+        fetchInstructors(); 
       })
       .catch(error => {
         console.error("Error deleting instructor:", error);
@@ -45,7 +46,7 @@ const Instructors = () => {
     setShowEditModal(false);
     setSelectedInstructor(null);
     if (refreshData) {
-      fetchInstructors(); // Fetch updated instructors data
+      fetchInstructors(); 
     }
   };
 
@@ -69,7 +70,7 @@ const Instructors = () => {
           </thead>
           <tbody>
             {instructors.map(instructor => (
-              <tr key={instructor.id}>
+              <tr key={uuidv4()}>
                 <td>{instructor.name}</td>
                 <td>{instructor.email}</td>
                 <td>{instructor.phone}</td>

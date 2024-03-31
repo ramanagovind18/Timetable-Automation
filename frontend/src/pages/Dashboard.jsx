@@ -7,6 +7,7 @@ const Dashboard = () => {
   const [instructorsCount, setInstructorsCount] = useState(0);
   const [coursesCount, setCoursesCount] = useState(0);
   const [classroomsCount, setClassroomsCount] = useState(0);
+  const [classesCount, setClassesCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -20,6 +21,9 @@ const Dashboard = () => {
 
         const classroomsResponse = await axios.get("http://localhost:8000/api/classrooms/");
         setClassroomsCount(classroomsResponse.data.length);
+        
+        const classesResponse = await axios.get("http://localhost:8000/api/classes/");
+        setClassesCount(classesResponse.data.length);
 
         setLoading(false);
       } catch (error) {
@@ -52,6 +56,10 @@ const Dashboard = () => {
           <div className="stat-item">
             <h3>ClassRooms</h3>
             {loading ? <p>Loading...</p> : <p>{classroomsCount}</p>}
+          </div>
+          <div className="stat-item">
+            <h3>Classes</h3>
+            {loading ? <p>Loading...</p> : <p>{classesCount}</p>}
           </div>
         </div>
         
