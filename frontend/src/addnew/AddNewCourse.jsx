@@ -3,8 +3,8 @@ import axios from "axios";
 
 const AddNewCourse = ({ isOpen, onClose, onAddSuccess }) => {
   const [formData, setFormData] = useState({
-    courseName: "",
-    courseCode: ""
+    course_code: "",
+    course_name: ""
   });
 
   const handleChange = (e) => {
@@ -35,9 +35,9 @@ const AddNewCourse = ({ isOpen, onClose, onAddSuccess }) => {
           <h2>Add New Course</h2>
           <form onSubmit={handleSubmit}>
             <label>Course Code:</label>
-            <input type="text" name="courseCode" value={formData.courseCode} onChange={handleChange} required />
+            <input type="text" name="course_code" value={formData.course_code} onChange={handleChange} required />
             <label>Course Name:</label>
-            <input type="text" name="courseName" value={formData.courseName} onChange={handleChange} />
+            <input type="text" name="course_name" value={formData.course_name} onChange={handleChange} />
             <div className="buttons">
               <button type="submit">Add</button>
               <button onClick={onClose}>Cancel</button>

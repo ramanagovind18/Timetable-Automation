@@ -34,9 +34,8 @@ class Instructor(models.Model):
     def __str__(self):
         return self.name
     
-
 class Course(models.Model):
-    course_code = models.CharField(max_length=10, primary_key=True)
+    course_code = models.CharField(max_length=10, blank=True)
     course_name = models.CharField(max_length=100)
 
     # Add more fields as needed
@@ -45,7 +44,7 @@ class Course(models.Model):
         return self.course_name
 
 class Classroom(models.Model):
-    room_number = models.CharField(max_length=10, primary_key=True)
+    room_number = models.CharField(max_length=10, blank=True)
     seating_capacity = models.IntegerField(default=0)
     # Add more fields as needed
 
@@ -58,6 +57,7 @@ class Class(models.Model):
 
     def __str__(self):
         return self.name
+
 
 class Role(models.Model):
     name = models.CharField(max_length=50)

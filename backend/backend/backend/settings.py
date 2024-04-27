@@ -82,7 +82,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'timetable-automation',
         'USER': 'root',
-        'PASSWORD': 'ramana@admin20',
+        'PASSWORD': 'ram@MySql2024',
         'HOST': 'localhost',   
         'PORT': '3306',
     }

@@ -12,7 +12,7 @@ const AddNewClassroom = ({ isOpen, onClose, onAddSuccess }) => {
         room_number: roomNumber,
         seating_capacity: seatingCapacity
       });
-      onClose(false); // Close the modal
+      onClose(); // Close the modal
       onAddSuccess(); // Refresh the data
     } catch (error) {
       console.error("Error adding new classroom:", error);
@@ -20,9 +20,9 @@ const AddNewClassroom = ({ isOpen, onClose, onAddSuccess }) => {
   };
 
   return (
-    <div>
-      {isOpen && (
-        <div>
+    isOpen && (
+      <div className="modal">
+        <div className="modal-content" onClick={(e) => e.stopPropagation()}>
           <h2>Add New Classroom</h2>
           <form onSubmit={handleSubmit}>
             <label>
@@ -33,11 +33,14 @@ const AddNewClassroom = ({ isOpen, onClose, onAddSuccess }) => {
               Seating Capacity:
               <input type="number" value={seatingCapacity} onChange={(e) => setSeatingCapacity(e.target.value)} />
             </label>
-            <button type="submit">Add Classroom</button>
+            <div className="buttons">
+              <button type="submit">Save</button>
+              <button type="button" onClick={onClose}>Cancel</button>
+            </div>
           </form>
         </div>
-      )}
-    </div>
+      </div>
+    )
   );
 };
 
