@@ -1,16 +1,18 @@
 from rest_framework import serializers
-from .models import Instructor, Classroom, Course, Class
-from .models import User
+from .models import Instructor, Classroom, Course, Class,TimetableEntry 
 
-class UserSerializer(serializers.ModelSerializer):
+class TimetableEntrySerializer(serializers.ModelSerializer):
     class Meta:
-        model = User
-        fields = ['id', 'username', 'role']
-# class TimetableSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Timetable
-#         fields = '__all__'
+        model = TimetableEntry
+        fields = '__all__'
 
+    
+# class UserSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = User
+#         fields = ['id', 'username', 'role']
+
+        
 class InstructorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Instructor

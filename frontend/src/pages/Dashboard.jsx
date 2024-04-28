@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Sidebar from "./Sidebar.jsx";
+import ThreeDModel from "./ThreeDModel.jsx";
 import "../css/dashboard.css"; 
 
 const Dashboard = () => {
@@ -62,31 +63,9 @@ const Dashboard = () => {
             {loading ? <p>Loading...</p> : <p>{classesCount}</p>}
           </div>
         </div>
-        
-<div className="generate-timetable-btn">
-  <button>Generate Timetables</button>  
-</div>
-
-
-<table className="timetable-table">
-  <thead>
-    <tr>
-      <th>Timetable Name</th>
-      <th>Status</th>
-      <th>Print</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>CSBS - A</td>
-      <td>Completed</td>
-      <td><button>Print</button></td>
-    </tr>
-  </tbody>
-</table>
-</div>
-</div>
-);
+      </div>
+    </div>
+  );
 };
 
 export default Dashboard;

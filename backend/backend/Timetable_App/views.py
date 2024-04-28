@@ -1,29 +1,12 @@
 from rest_framework import viewsets
-from .models import Instructor, Course, Classroom, Class
-# , Timetable
-from .serializers import InstructorSerializer, CourseSerializer, ClassroomSerializer, ClassSerializer
-from rest_framework.decorators import api_view
+from .models import Instructor, Course, Classroom, Class, TimetableEntry
+from .serializers import InstructorSerializer, CourseSerializer, ClassroomSerializer, ClassSerializer, TimetableEntrySerializer
 from rest_framework.response import Response
 from django.contrib.auth import authenticate, login, logout
-from .models import User
-from .serializers import UserSerializer
+from django.http import JsonResponse
+import json
 
-@api_view(['POST'])
-def login_view(request):
-    username = request.data.get('username')
-    password = request.data.get('password')
-    user = authenticate(request, username=username, password=password)
-    if user is not None:
-        login(request, user)
-        serializer = UserSerializer(user)
-        return Response({'message': 'Login successful', 'user': serializer.data})
-    else:
-        return Response({'message': 'Login failed'}, status=401)
-
-@api_view(['GET'])
-def logout_view(request):
-    logout(request)
-    return Response({'message': 'Logout successful'})
+# views.py
 
 class InstructorViewSet(viewsets.ModelViewSet):
     queryset = Instructor.objects.all()
@@ -40,3 +23,26 @@ class ClassroomViewSet(viewsets.ModelViewSet):
 class ClassViewSet(viewsets.ModelViewSet):
     queryset = Class.objects.all()
     serializer_class = ClassSerializer
+
+
+# views.py
+
+
+class TimetableEntryViewSet(viewsets.ModelViewSet):
+    queryset = TimetableEntry.objects.all()
+    serializer_class = TimetableEntrySerializer
+
+def save_timetable(request):
+    if request.method == 'POST':
+        try:
+            timetable_data = json.loads(request.body)
+            serializer = TimetableEntrySerializer(data=timetable_data, many=True)
+            if serializer.is_valid():
+                serializer.save()
+                return Response({'message': 'Timetable data saved successfully'}, status=status.HTTP_201_CREATED)
+            else:
+                return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+        except json.JSONDecodeError:
+            return Response({'error': 'Invalid JSON data'}, status=status.HTTP_400_BAD_REQUEST)
+    else:
+        return Response({'error': 'Only POST requests are allowed'}, status=status.HTTP_405_METHOD_NOT_ALLOWED)

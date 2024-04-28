@@ -1,0 +1,111 @@
+.timetable-page {
+  display: grid;
+  grid-template-columns: auto 1fr; /* Sidebar and main content */
+  background: linear-gradient(90deg, rgba(232,41,41,1) 0%, rgba(121,56,9,1) 55%, rgb(23, 70, 80) 100%);
+  font-family: "Courier New", Courier, monospace;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 10px;
+}
+.print-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px; /* Adjust the margin as needed */
+}
+
+.print-button {
+  background-color: #0056b3;
+  padding: 10px 20px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+
+.print-button:hover {
+  background-color: #004080;
+}
+
+.head h1 {
+  font-size: 30px;
+  color: #ffffff;
+}
+
+.head button {
+  padding: 20px 20px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #143455;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+}
+button{
+  background-color: #1f75d1;
+  border-radius: 10px;
+}
+
+.input-section label,
+.input-section input,
+.input-section select {
+  margin-bottom: 10px; /* Add margin bottom to input elements */
+}
+
+.input-section input,
+.input-section select {
+  width: 50px; /* Set the width of input fields and select elements */
+}
+
+.Timetable {
+  grid-column: 2 / 3; /* Position timetable in the second column */
+  display: flex;
+  flex-direction: column; /* Display timetable in a column */
+  gap: 20px; /* Gap between days */
+}
+
+.timetable-grid table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.timetable-grid th,
+.timetable-grid td {
+  padding: 10px;
+  border: 1px solid #ccc;
+  background-color: #ff6060;
+  color: #333;
+  font-weight: bold;
+}
+
+.timetable-grid td {
+  background-color: #f8c5c5;
+  color: #333;
+}
+
+.timetable-grid td button {
+  background-color: #2c6199;
+  padding: 10px 20px;
+  border-radius: 10px;
+  color: #ffffff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.5s ease;
+  margin: 1px 2px;
+}
+
+.timetable-grid td button:hover {
+  background-color: #004080;
+}

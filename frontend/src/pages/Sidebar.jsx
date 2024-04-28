@@ -11,7 +11,8 @@ function Sidebar(){
             <li><Link to="/instructors">Instructors</Link></li>
             <li><Link to="/courses">Courses</Link></li>
             <li><Link to="/classrooms">Classrooms</Link></li> 
-            <li><Link to="/classes">Classes</Link></li> 
+            <li><Link to="/classes">Classes</Link></li>
+            <li><Link to= "/timetable">Timetable Generation</Link></li> 
             <li><Link to="/logout">Logout</Link></li> 
           </ul>
         </div>
