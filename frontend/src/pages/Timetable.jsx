@@ -184,24 +184,98 @@ const Timetable = () => {
   
     function generatePopulation() {
       const population = [];
-      for (let i = 0; i < POPULATION_SIZE; i++) {
+      
+      while (population.length < POPULATION_SIZE) {
         const timetable = [];
+        let isUnique = true;
+    
         for (let day = 0; day < numberOfDays; day++) {
-          const daySchedule = [];
-          for (let period = 0; period < 8; period++) {
-            const randomClass = classes[Math.floor(Math.random() * classes.length)];
-            const randomAssociation = associations[Math.floor(Math.random() * associations.length)];
-            const randomCourse = randomAssociation.course;
-            const randomInstructor = randomAssociation.instructor;
-            const randomClassroom = classrooms[Math.floor(Math.random() * classrooms.length)];
-            daySchedule.push({ class: randomClass, course: randomCourse, instructor: randomInstructor, classroom: randomClassroom });
-          }
+          const daySchedule = generateUniqueDaySchedule(population);
           timetable.push(daySchedule);
         }
-        population.push(timetable);
+    
+        for (const existingTimetable of population) {
+          if (isTimetableEqual(existingTimetable, timetable)) {
+            isUnique = false;
+            break;
+          }
+        }
+    
+        if (isUnique) {
+          population.push(timetable);
+        }
       }
+    
       return population;
     }
+    
+    function generateUniqueDaySchedule(population) {
+      let daySchedule;
+      let isUnique = false;
+    
+      while (!isUnique) {
+        daySchedule = [];
+        for (let period = 0; period < 8; period++) {
+          const randomClass = classes[Math.floor(Math.random() * classes.length)];
+          const randomAssociation = associations[Math.floor(Math.random() * associations.length)];
+          const randomCourse = randomAssociation.course;
+          const randomInstructor = randomAssociation.instructor;
+          const randomClassroom = classrooms[Math.floor(Math.random() * classrooms.length)];
+          daySchedule.push({ class: randomClass, course: randomCourse, instructor: randomInstructor, classroom: randomClassroom });
+        }
+    
+        isUnique = true;
+        for (const existingTimetable of population) {
+          if (isDayScheduleEqual(existingTimetable, daySchedule)) {
+            isUnique = false;
+            break;
+          }
+        }
+      }
+    
+      return daySchedule;
+    }
+    
+    function isTimetableEqual(timetable1, timetable2) {
+      for (let i = 0; i < timetable1.length; i++) {
+        if (!isDayScheduleEqual(timetable1[i], timetable2[i])) {
+          return false;
+        }
+      }
+      return true;
+    }
+    
+    function isDayScheduleEqual(daySchedule1, daySchedule2) {
+      if (daySchedule1.length !== daySchedule2.length) {
+        return false;
+      }
+    
+      for (let i = 0; i < daySchedule1.length; i++) {
+        if (!isObjectEqual(daySchedule1[i], daySchedule2[i])) {
+          return false;
+        }
+      }
+    
+      return true;
+    }
+    
+    function isObjectEqual(obj1, obj2) {
+      const keys1 = Object.keys(obj1);
+      const keys2 = Object.keys(obj2);
+    
+      if (keys1.length !== keys2.length) {
+        return false;
+      }
+    
+      for (const key of keys1) {
+        if (obj1[key] !== obj2[key]) {
+          return false;
+        }
+      }
+    
+      return true;
+    }
+    
   
   
     function evaluateFitness(timetable) {

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import Sidebar from "./Sidebar.jsx";
-import ThreeDModel from "./ThreeDModel.jsx";
 import "../css/dashboard.css"; 
 
 const Dashboard = () => {
